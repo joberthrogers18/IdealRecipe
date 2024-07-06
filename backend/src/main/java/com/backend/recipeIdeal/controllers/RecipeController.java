@@ -1,5 +1,6 @@
 package com.backend.recipeIdeal.controllers;
 
+import com.backend.recipeIdeal.dtos.RequestRecipeDTO;
 import com.backend.recipeIdeal.dtos.ResponseRestDTO;
 import com.backend.recipeIdeal.models.Recipe;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.backend.recipeIdeal.services.RecipeService;
@@ -57,7 +59,19 @@ public class RecipeController {
     }
   }
 
-//  @PostMapping("/")
-//  public ResponseEntity<ResponseRestDTO<Object>> createRecipe()
+  @PostMapping("/")
+  public ResponseEntity<ResponseRestDTO<Object>> createRecipe(@RequestBody RequestRecipeDTO body) {
+    try {
+      recipeService.createRecipe(body);
+      return ResponseEntity.status(HttpStatus.CREATED).body(
+          ResponseRestDTO.builder().statusCode(HttpStatus.CREATED.toString())
+              .message("Recipe create successfully").data(null).build()
+      );
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+          ResponseRestDTO.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+              .message(e.getMessage()).data(null).build());
+    }
+  }
 
 }
