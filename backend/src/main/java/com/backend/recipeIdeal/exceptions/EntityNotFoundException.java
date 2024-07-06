@@ -1,4 +1,4 @@
-package exceptions;
+package com.backend.recipeIdeal.exceptions;
 
 public class EntityNotFoundException extends RuntimeException {
 

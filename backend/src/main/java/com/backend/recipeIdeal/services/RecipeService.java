@@ -1,11 +1,10 @@
-package services;
+package com.backend.recipeIdeal.services;
 
 import com.backend.recipeIdeal.models.Recipe;
 import com.backend.recipeIdeal.repositories.RecipeRepository;
-import exceptions.EntityNotFoundException;
+import com.backend.recipeIdeal.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
