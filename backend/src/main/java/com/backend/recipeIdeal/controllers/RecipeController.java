@@ -80,11 +80,11 @@ public class RecipeController {
   public ResponseEntity<ResponseRestDTO<Object>> updateRecipe(@PathVariable("id") Long id,
       @RequestBody RequestRecipeDTO body) {
     try {
-      recipeService.updateRecipe(id, body);
+      Recipe recipe = recipeService.updateRecipe(id, body);
 
       return ResponseEntity.status(HttpStatus.ACCEPTED).body(
           ResponseRestDTO.builder().statusCode(HttpStatus.ACCEPTED.toString())
-              .message("Recipe updated successfully").data(null).build()
+              .message("Recipe updated successfully").data(recipe).build()
       );
     } catch (Exception e) {
       if (e instanceof EntityNotFoundException) {

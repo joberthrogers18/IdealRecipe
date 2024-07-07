@@ -35,7 +35,8 @@ public class RecipeService {
     );
     currentRecipe.setTitle(recipe.getTitle());
     currentRecipe.setDescription(recipe.getDescription());
-    return recipeRepository.save(currentRecipe);
+    recipeRepository.save(currentRecipe);
+    return currentRecipe;
   }
 
   public void deleteRecipe(Long id) {
