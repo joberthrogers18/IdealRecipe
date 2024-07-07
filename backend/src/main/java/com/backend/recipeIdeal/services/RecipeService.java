@@ -29,13 +29,13 @@ public class RecipeService {
     recipeRepository.save(recipe);
   }
 
-  public Recipe updateRecipe(Long id, Recipe recipe) {
+  public Recipe updateRecipe(Long id, RequestRecipeDTO recipe) {
     Recipe currentRecipe = getRecipeById(id).orElseThrow(
         () -> new EntityNotFoundException("Recipe not found with id: " + id)
     );
     currentRecipe.setTitle(recipe.getTitle());
     currentRecipe.setDescription(recipe.getDescription());
-    return recipeRepository.save(recipe);
+    return recipeRepository.save(currentRecipe);
   }
 
   public void deleteRecipe(Long id) {
