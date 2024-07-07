@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,6 +96,30 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
             ResponseRestDTO.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.toString())
                 .message("It was not possible recover recipe!").data(e.getMessage()).build()
+        );
+      }
+    }
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<ResponseRestDTO<Object>> deleteRecipe(@PathVariable("id") Long id) {
+    try {
+      recipeService.deleteRecipe(id);
+
+      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
+          ResponseRestDTO.builder().statusCode(HttpStatus.NO_CONTENT.toString())
+              .message("Recipe deleted successfully").data(null).build()
+      );
+    } catch (Exception e) {
+      if (e instanceof EntityNotFoundException) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+            ResponseRestDTO.builder().statusCode(HttpStatus.NOT_FOUND.toString())
+                .message("Recipe is not found").data(null).build()
+        );
+      } else {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+            ResponseRestDTO.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+                .message("It was not possible delete recipe!").data(e.getMessage()).build()
         );
       }
     }
