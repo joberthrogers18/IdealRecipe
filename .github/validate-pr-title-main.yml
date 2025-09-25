@@ -1,11 +1,11 @@
-name: Validar título de PR
+name: Validate title PR
 
 on:
   pull_request:
     types: [opened, edited, synchronize]
 
 jobs:
-  validar-titulo:
+  validate-title:
     if: github.base_ref == 'main'
     runs-on: ubuntu-latest
     steps:
