@@ -6,7 +6,7 @@ on:
 
 jobs:
   validate-title:
-    if: github.event.pull_request.base.ref == 'main'
+    # if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Verificar formato do título
