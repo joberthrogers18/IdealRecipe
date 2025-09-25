@@ -1,0 +1,17 @@
+name: Validar título de PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  validar-titulo:
+    if: github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar formato do título
+        run: |
+          if [[ ! "${{ github.event.pull_request.title }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "O título do PR deve estar no formato vX.Y.Z para PRs na branch main."
+            exit 1
+          fi
