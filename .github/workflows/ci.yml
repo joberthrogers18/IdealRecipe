@@ -1,0 +1,19 @@
+# .github/workflows/ci.yml
+name: Dummy CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  dummy-check:
+    name: Dummy Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run a dummy step
+        run: echo "✅ Workflow de teste funcionando!"
