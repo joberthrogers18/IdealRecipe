@@ -12,18 +12,15 @@ permissions:
 
 jobs:
   release-please:
+    if: "!startsWith(github.event.head_commit.message, 'chore(main): release')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-
-      - name: Get last commit message
-        id: last-commit
-        run: |
-          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+        with:
+          fetch-depth: 0
 
       - name: Run release-please
-        if: ${{ !startsWith(env.COMMIT_MSG, 'chore(main): release') }}
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
