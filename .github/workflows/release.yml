@@ -45,17 +45,8 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "✅ Versão encontrada: $VERSION"
 
-      - name: Executar Release Please
+      - name: Criar Release com Release Please
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
-          package-name: meu-projeto
-          version: ${{ steps.get_version.outputs.version }}
-          bump-minor-pre-major: true
-          changelog-types: |
-            [
-              {"type":"feat","section":"✨ Novas Funcionalidades","hidden":false},
-              {"type":"fix","section":"🐛 Correções de Bugs","hidden":false},
-              {"type":"docs","section":"📚 Documentação","hidden":false},
-              {"type":"chore","section":"🧹 Manutenção","hidden":true}
-            ]
+          config-file: release-please-config.json

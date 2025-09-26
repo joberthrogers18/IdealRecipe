@@ -1,0 +1,11 @@
+{
+    "release-type": "simple",
+    "pull-request-title-pattern": "🚀 Nova versão ${version}",
+    "changelog-types": [
+      {"type":"feat","section":"✨ Novas Funcionalidades","hidden":false},
+      {"type":"fix","section":"🐛 Correções de Bugs","hidden":false},
+      {"type":"docs","section":"📚 Documentação","hidden":false},
+      {"type":"chore","section":"🧹 Manutenção","hidden":true}
+    ]
+  }
+  
