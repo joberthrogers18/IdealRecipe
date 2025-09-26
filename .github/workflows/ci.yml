@@ -1,3 +1,5 @@
+name: release-please
+
 on:
   push:
     branches:
@@ -8,13 +10,21 @@ permissions:
   issues: write
   pull-requests: write
 
-name: release-please
-
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Get last commit message
+        id: last-commit
+        run: |
+          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Run release-please
+        if: ${{ !startsWith(env.COMMIT_MSG, 'chore(main): release') }}
+        uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
-          release-type: simple
+          release-type: ptyhon
