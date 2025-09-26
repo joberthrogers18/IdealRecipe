@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.0.0](https://github.com/joberthrogers18/IdealRecipe/compare/v1.1.0...v2.0.0) (2025-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* melhorando o fluxo
+
+### Features
+
+* nova release ([dbdc88a](https://github.com/joberthrogers18/IdealRecipe/commit/dbdc88a99651c68d08371a5bb8ea3c4ca2a4b18f))
+
+
+### Bug Fixes
+
+* implementa release automática ([1f8dc8c](https://github.com/joberthrogers18/IdealRecipe/commit/1f8dc8ccb608977642f10668ecd1cfff48a58cfe))
+* melhorando o codigo ([207c729](https://github.com/joberthrogers18/IdealRecipe/commit/207c7295a99cf7126517ec9e8ee07db230266300))
+
+
+### Code Refactoring
+
+* melhorando o fluxo ([2a196bd](https://github.com/joberthrogers18/IdealRecipe/commit/2a196bd3ce0823bfecabfce9f542142eefd81dc1))
+
 ## [1.1.0](https://github.com/joberthrogers18/IdealRecipe/compare/v1.0.0...v1.1.0) (2025-09-26)
 
 
