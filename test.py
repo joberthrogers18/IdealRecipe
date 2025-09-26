@@ -2,8 +2,7 @@
 import datetime
 
 def main():
-    print("🚀 Script iniciado")
-    
+    print("🚀 Script iniciado agoraa")
     
     now = datetime.datetime.now()
     print(f"🕒 Data e hora atuais: {now}")
