@@ -11,7 +11,7 @@ def main():
     for i in range(5):
         print(f"🔹 Passo {i+1}")
 
-    print("✅ Script finalizado com sucesso!")
+    print("✅ Script finalizado com sucesso! Veja mais")
 
 if __name__ == "__main__":
     main()
