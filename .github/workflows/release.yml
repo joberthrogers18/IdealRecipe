@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Verificar formato do título
         run: |
-          if [[ ! "${{ github.event.pull_request.title }}" =~ ^.*v[0-9]+\.[0-9]+\.[0-9]+.*$ ]]; then
-            echo "❌ O título do PR deve conter a versão no formato vX.Y.Z para títulos de PRs refericiados para branch main."
+          if [[ ! "${{ github.event.pull_request.title }}" =~ v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "❌ O título do PR deve conter a versão no formato vX.Y.Z para PRs referenciados para a branch main."
             exit 1
           fi
           echo "✅ Título válido!"
@@ -32,18 +32,19 @@ jobs:
       - name: Checar código
         uses: actions/checkout@v4
 
-      - name: Extrair versão do último commit/merge
+      - name: Extrair versão do último merge commit
         id: get_version
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "Último commit: $COMMIT_MSG"
+          COMMIT_MSG=$(git log -1 --merges --pretty=%B)
           VERSION=$(echo "$COMMIT_MSG" | grep -oE "v[0-9]+\.[0-9]+\.[0-9]+")
+          
           if [ -z "$VERSION" ]; then
-            echo "❌ Não foi possível encontrar uma versão no último commit."
-            exit 1
+            echo "Não foi encontrada versão no merge commit. Usando v0.1.0 como primeira release."
+            VERSION="v0.1.0"
           fi
+          
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "✅ Versão encontrada: $VERSION"
+          echo "✅ Versão usada: $VERSION"
 
       - name: Criar Release com Release Please
         uses: googleapis/release-please-action@v4
