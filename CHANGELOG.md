@@ -1,3 +1,19 @@
+# Changelog
+
+## [1.1.0](https://github.com/joberthrogers18/IdealRecipe/compare/v1.0.0...v1.1.0) (2025-09-26)
+
+
+### Features
+
+* implementa release automática ([6b35504](https://github.com/joberthrogers18/IdealRecipe/commit/6b3550465fc1ae45190533973a22d578a65f4115))
+* implementa release automática com release-please ([047da66](https://github.com/joberthrogers18/IdealRecipe/commit/047da662f133e934a21f74ff29e33202853bc7f9))
+
+
+### Bug Fixes
+
+* implementa release automática ([1ff9b5e](https://github.com/joberthrogers18/IdealRecipe/commit/1ff9b5e34af8ea393f31e9ad339fbb1c97dffc67))
+* implementa release automática ([28e9c68](https://github.com/joberthrogers18/IdealRecipe/commit/28e9c683e3c2f4b9e7d239c52465c07c0a40192b))
+
 ## 1.0.0 (2025-09-26)
 
 * feat: add ci yaml ([3094a88](https://github.com/joberthrogers18/IdealRecipe/commit/3094a88))
