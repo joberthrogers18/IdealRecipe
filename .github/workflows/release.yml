@@ -35,16 +35,19 @@ jobs:
       - name: Extrair versão do último merge commit
         id: get_version
         run: |
-          COMMIT_MSG=$(git log -1 --merges --pretty=%B)
-          VERSION=$(echo "$COMMIT_MSG" | grep -oE "v[0-9]+\.[0-9]+\.[0-9]+")
-          
+          COMMIT_MSG=$(git log -1 --merges --pretty=%B || true)
+          echo "Último merge commit: $COMMIT_MSG"
+
+          VERSION=$(echo "$COMMIT_MSG" | grep -oE "v[0-9]+\.[0-9]+\.[0-9]+" || true)
+
           if [ -z "$VERSION" ]; then
-            echo "Não foi encontrada versão no merge commit. Usando v0.1.0 como primeira release."
+            echo "⚠ Não foi encontrada versão no merge commit. Usando v0.1.0 como primeira release."
             VERSION="v0.1.0"
           fi
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "✅ Versão usada: $VERSION"
+
 
       - name: Criar Release com Release Please
         uses: googleapis/release-please-action@v4
