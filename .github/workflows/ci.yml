@@ -1,24 +1,21 @@
-name: Release Please
-
+name: Release
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: write
-  pull-requests: write
+    branches:
+      - main
 
 jobs:
-  release-please:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Run Release Please
-        uses: googleapis/release-please-action@v4
+      - name: Run semantic-release
+        uses: cycjimmy/semantic-release-action@v5
         with:
-          release-type: simple
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          semantic_version: 19.0.5   # versão do semantic-release usada pela action (exemplo)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
