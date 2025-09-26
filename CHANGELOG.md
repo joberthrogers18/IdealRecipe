@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.1](https://github.com/joberthrogers18/IdealRecipe/compare/v2.0.0...v2.0.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* atualizando ci yaml ([0552453](https://github.com/joberthrogers18/IdealRecipe/commit/05524537c1af4cd2e59d06e3460e4bf193cc70c3))
+* atualizando o ci yaml ([e5be752](https://github.com/joberthrogers18/IdealRecipe/commit/e5be75280a65b27d6cf1b452c402f789616591c9))
+* atualizando o ci yaml ([83ea937](https://github.com/joberthrogers18/IdealRecipe/commit/83ea9370b96f026c1aaeb96067f490067e9827db))
+* atualizando o ci yaml ([02ceec1](https://github.com/joberthrogers18/IdealRecipe/commit/02ceec1dc826f6a59a1b6a0e2d3754af1748d1be))
+* atualizando o script ([7364a53](https://github.com/joberthrogers18/IdealRecipe/commit/7364a537fec4c754703dfed690a1ca02c63fc4d7))
+* atualizando script ([f8ff5d7](https://github.com/joberthrogers18/IdealRecipe/commit/f8ff5d7ebe37b82bd3f455b7a78131a1bd7adb2c))
+* atualizando script ([4f4e2ea](https://github.com/joberthrogers18/IdealRecipe/commit/4f4e2ea672777133f8b2dac35994062147a6bab3))
+* udpate script ([f40e76a](https://github.com/joberthrogers18/IdealRecipe/commit/f40e76a092759c962b461c28729f8b30d5eb09e5))
+
 ## [2.0.0](https://github.com/joberthrogers18/IdealRecipe/compare/v1.1.0...v2.0.0) (2025-09-26)
 
 
