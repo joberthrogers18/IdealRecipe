@@ -1,26 +1,42 @@
-name: Release
+name: Release (semantic-release via cycjimmy action)
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 permissions:
   contents: write
-  issues: write 
+  issues: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (full)
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Run semantic-release
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Criar package.json e instalar preset necessário
+        run: |
+          npm init -y
+          npm install --no-save conventional-changelog-conventionalcommits
+
+      - name: Configurar usuário git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Rodar semantic-release (cycjimmy action)
         uses: cycjimmy/semantic-release-action@v5
         with:
-          semantic_version: 19.0.5
+          semantic_version: '19.0.5'
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          DEBUG: semantic-release:*
