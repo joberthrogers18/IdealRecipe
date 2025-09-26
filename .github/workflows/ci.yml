@@ -21,4 +21,5 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
-          # APENAS inputs suportados pelo v4
+          skip-github-pull-request: true
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
