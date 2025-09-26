@@ -1,0 +1,61 @@
+name: Validar PR e Criar Release
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+  push:
+    branches:
+      - main
+
+jobs:
+  validar-titulo-pr:
+    name: Validar título do PR
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar formato do título
+        run: |
+          if [[ ! "${{ github.event.pull_request.title }}" =~ ^.*v[0-9]+\.[0-9]+\.[0-9]+.*$ ]]; then
+            echo "❌ O título do PR deve conter a versão no formato vX.Y.Z para títulos de PRs refericiados para branch main."
+            exit 1
+          fi
+          echo "✅ Título válido!"
+
+  criar-release:
+    name: Criar Release Automática
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checar código
+        uses: actions/checkout@v4
+
+      - name: Extrair versão do último commit/merge
+        id: get_version
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Último commit: $COMMIT_MSG"
+          VERSION=$(echo "$COMMIT_MSG" | grep -oE "v[0-9]+\.[0-9]+\.[0-9]+")
+          if [ -z "$VERSION" ]; then
+            echo "❌ Não foi possível encontrar uma versão no último commit."
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "✅ Versão encontrada: $VERSION"
+
+      - name: Executar Release Please
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: simple
+          package-name: meu-projeto
+          version: ${{ steps.get_version.outputs.version }}
+          bump-minor-pre-major: true
+          changelog-types: |
+            [
+              {"type":"feat","section":"✨ Novas Funcionalidades","hidden":false},
+              {"type":"fix","section":"🐛 Correções de Bugs","hidden":false},
+              {"type":"docs","section":"📚 Documentação","hidden":false},
+              {"type":"chore","section":"🧹 Manutenção","hidden":true}
+            ]
